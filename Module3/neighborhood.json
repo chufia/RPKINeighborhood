@@ -4,12 +4,12 @@
     {"id": "18368","rpki": 78},
     {"id": "2497", "rpki": 16},
     {"id": "2516", "rpki": 1},
-    {“id”: “9999”, “rpki”: 0}
+    {"id": "9999", "rpki": 0}
   ],
   "links": [
     {"source": "18368", "target": "1221", "value": 1},
     {"source": "2497", "target": "2516", "value": 1},
-    {“source": “9999”, "target": "2516", "value": 1},
-    {"source": “9999”, "target": “1221”, "value": 1}
+    {“source": "9999", "target": "2516", "value": 1},
+    {"source": "9999", "target": "1221", "value": 1}
     ]
 }
