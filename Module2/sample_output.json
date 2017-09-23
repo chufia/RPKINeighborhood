@@ -1,8 +1,8 @@
+[{
+"AS": "1221",
+"Deployment": "50"
+},
 {
-AS: 1221,
-Deployment: 50
-}
-{
-AS: 18368,
-Deployment: 90
-}
+"AS": "18368",
+"Deployment": "90"
+}]
