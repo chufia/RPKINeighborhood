@@ -5,27 +5,36 @@
 .links line {
   stroke: black;
   stroke-opacity: 1.0;
+  width:100;
+ height:100;
 }
 
 .nodes circle {
-  stroke: #0a0;
+  stroke: green;
   stroke-width: 0.5px;
 }
 
 .text d {
     font-size: 500%;
 }
+.nodes circle{
+  width="50" height="50"; 
+}
+
 
 </style>
 <svg width="960" height="600"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-color.v1.min.js"></script>
+<script src="https://d3js.org/d3-hsv.v0.1.min.js"></script>
 <script>
 
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
-var color = d3.scaleOrdinal(d3.schemeCategory20);
+//var color = d3.scaleOrdinal(d3.schemeCategory20);
+
 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) 
@@ -44,22 +53,26 @@ d3.json("neighborhood.json", function(error, graph)
     .selectAll("line")
     .data(graph.links)
     .enter().append("line")
-      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+    .attr("stroke-width", function(d) { return 2*Math.sqrt(d.value); })    
+    
 
   var node = svg.append("g")
     .attr("class", "nodes")
     .selectAll("circle")
     .data(graph.nodes)
     .enter().append("circle")
-      .attr("r", 5)
-      .attr("fill", function(d) { return color(d.group); })
+      .attr("r", 15)
+
+      .attr("fill",function(d) {return d3.hsv(240, d.rpki/100, 0.90);})
+      
+      
       .call(d3.drag()
           .on("start", dragstarted)
           .on("drag", dragged)
           .on("end", dragended));
 
   node.append("title")
-      .text(function(d) { return d.id+" "+d.rpki });
+      .text(function(d) { return d.id+", "+d.rpki+"%" });
 
   simulation
       .nodes(graph.nodes)
